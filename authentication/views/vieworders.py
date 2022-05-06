@@ -4,8 +4,6 @@ from django.contrib.auth.hashers import check_password
 from authentication.models import Product
 from authentication.orders import Orders
 from authentication.customer import Customer
-from middlewares.auth import auth_middleware
-
 
 
 class OrderView(View):

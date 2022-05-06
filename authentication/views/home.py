@@ -66,7 +66,6 @@ class Order(View):
                     if quantity <= 1:
                         cart.pop(product)   
                     else:
-
                         cart[product] = quantity - 1
                 else:
                    cart[product] = quantity + 1
@@ -79,18 +78,14 @@ class Order(View):
 
         request.session['cart'] = cart
         print('cart' , request.session['cart'])
-        return redirect('order')
+        return redirect('home')
 
-    def get(self , request):
-        # print()
-        return HttpResponseRedirect(f'/home{request.get_full_path()[1:]}')
 
-    def order(self , request):   
+    def get(self , request):   
         cart = request.session.get('cart')
         if not cart:
             request.session['cart'] = {}
-        products = None  
-            
+        products = None        
         categories = Category.get_all_categories();
         categoryID = request.GET.get('category')
         if categoryID:
@@ -104,5 +99,6 @@ class Order(View):
          
         print('you are :' , request.session.get('email'))
         return render(request, 'order.html', data)
+        
 
 #######
